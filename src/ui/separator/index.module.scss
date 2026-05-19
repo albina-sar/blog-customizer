@@ -1,5 +1,11 @@
 .separator {
+	box-sizing: border-box;
 	width: 100%;
 	height: 1px;
-	background: #000000;
+
+	/* Убираем лишние отступы у самого сепаратора, чтобы gap работал правильно */
+	margin: 0;
+
+	/* Цвет линии по вашему требованию */
+	border: 1px solid #d7d7d7;
 }

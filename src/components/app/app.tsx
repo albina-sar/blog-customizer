@@ -11,20 +11,14 @@ import {
 import styles from './app.module.scss';
 
 export const App = () => {
-	// 1. Глобальное состояние страницы
+	// Глобальное состояние страницы (то, что применено к статье)
 	const [articleState, setArticleState] =
 		useState<ArticleStateType>(defaultArticleState);
 
-	// 2. Состояние открытия/закрытия панели
-	const [isSidebarOpen, setIsSidebarOpen] = useState(false);
-
-	// Обработчик применения настроек из формы
 	const handleApplyParams = (params: ArticleStateType) => {
 		setArticleState(params);
-		setIsSidebarOpen(false); // Закрываем панель после применения
 	};
 
-	// Обработчик сброса настроек
 	const handleResetParams = () => {
 		setArticleState(defaultArticleState);
 	};
@@ -41,9 +35,8 @@ export const App = () => {
 					'--bg-color': articleState.backgroundColor.value,
 				} as CSSProperties
 			}>
+			{/* Передаём только то, что нужно для работы самой формы */}
 			<ArticleParamsForm
-				isOpen={isSidebarOpen}
-				onToggle={setIsSidebarOpen}
 				currentState={articleState}
 				onApply={handleApplyParams}
 				onReset={handleResetParams}
